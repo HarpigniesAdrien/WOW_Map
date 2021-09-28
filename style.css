@@ -1,0 +1,45 @@
+@font-face {
+ font-family: "lifecraft";
+ src: url("LifeCraft_Font.ttf");
+}
+
+body {
+	font-family: lifecraft;
+	font-size: 22px;
+	margin: 0;
+	background-image: url("Images/background-parchemin.jpg");
+}
+
+header {
+	display: flex;
+	justify-content: center;
+}
+
+body>div {
+	display:flex;
+}
+
+#map {
+	height: 600px;
+	width: 600px;
+	overflow: hidden;
+	margin: 0 10px;
+	border: solid black 4px;
+}
+
+#map>div {
+	background-image: url("Images/AzerothMap.jpg");
+	width: 9000px;
+	height: 6710px;
+	position: relative;
+}
+
+.bouton {
+	height: 28px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.bouton:hover {
+	font-size: 24px;
+}

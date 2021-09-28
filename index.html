@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>WOW Map</title>
+		<link rel="stylesheet" href="style.css">
+		<meta name="author" content="Harpignies Adrien">
+		<meta name="description" content="Exercice javascript / jQuery : map interactive">
+	</head>
+	<body>
+		<header>
+			<h1>World of Warcraft Map</h1>
+		</header>
+		<div>
+			<div id="map">
+				<div></div>
+			</div>
+			<div>
+				<h2>Selectionnez une destination dans la liste ci-dessous</h2>
+				<div class="bouton" id="darnassus">Darnassus</div>
+				<div class="bouton" id="exodar">L'Exodar</div>
+				<div class="bouton" id="orgrimmar">Orgrimmar</div>
+				<div class="bouton" id="pitonsdutonnere">Les Pitons du Tonnerre</div>
+				<div class="bouton" id="theramore">Theramore</div>
+				<div class="bouton" id="gadgetzan">Gadgetzan</div>
+				<div class="bouton" id="citadelleglace">La Citadelle de la Couronne de glace</div>
+				<div class="bouton" id="luneargent">Lune d'Argent</div>
+				<div class="bouton" id="stratholme">Strathomle</div>
+				<div class="bouton" id="fossoyeuse">Fossoyeuse</div>
+				<div class="bouton" id="gilneas">Gilneas</div>
+				<div class="bouton" id="forgefer">Forgefer</div>
+				<div class="bouton" id="gnomeregan">Gnomeregan</div>
+				<div class="bouton" id="rochenoire">Mont Rochenoire</div>
+				<div class="bouton" id="hurlevent">Hurlevent</div>
+				<div class="bouton" id="karazhan">Karazhan</div>
+				<div class="bouton" id="portetenebres">La Porte des tenebres</div>
+				<div class="bouton" id="baiedubutin">Baie du Butin</div>
+			</div>
+		</div>
+		<script src="jquery.min.js"></script>
+		<script>
+		// Data : abscissa and ordinate in pixel of the different places
+		var x = {'darnassus':1046,'exodar':320,'orgrimmar':2230,'pitonsdutonnere':1485,'theramore':2260,'gadgetzan':2135,'citadelleglace':4410,'luneargent':8405,'stratholme':8145,'fossoyeuse':7455,'gilneas':7210,'forgefer':7650,'gnomeregan':7365,'rochenoire':7710,'hurlevent':7370,'karazhan':7875,'portetenebres':8110,'baiedubutin':7390};
+		var y = {'darnassus':2180,'exodar':2880,'orgrimmar':3570,'pitonsdutonnere':4115,'theramore':4570,'gadgetzan':5175,'citadelleglace':1040,'luneargent':1715,'stratholme':2560,'fossoyeuse':2895,'gilneas':3525,'forgefer':4170,'gnomeregan':4200,'rochenoire':4700,'hurlevent':4870,'karazhan':5340,'portetenebres':5495,'baiedubutin':5975};
+		
+		$(document).ready(function() {
+			$('#map>div').css({"left":-7070,"top":-4570});// default position (hurlevent)
+
+			$('.bouton').click( function() {
+				$('.bouton').css("color","black");// reset button color
+				$(this).css("color","blue");// modify the color of the selected place
+
+				// calculate the difference of abscissa and ordinate between current position and the selected location
+				var diffX = parseInt($('#map>div').css('left'))-300 + x[this.id];
+				var diffY = parseInt($('#map>div').css('top'))-300 + y[this.id];
+				var duree = Math.ceil(Math.sqrt(diffX**2 + diffY**2));// Adapt the duration according to the distance
+
+				$('#map>div').stop();
+				$('#map>div').animate({left: -x[this.id]+300, top: -y[this.id]+300}, {duration: 2*duree});// move to the selected location
+			});
+		});
+		</script>
+	</body>
+</html>
